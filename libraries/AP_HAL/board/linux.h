@@ -325,7 +325,16 @@
     #endif
     #define HAL_BUZZER_PIN                12 // You can choose between 27,22,4,12
     #define OBAL_ALLOW_ADC                1
-
+#elif CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_LINUX_ZEROW
+    #define HAL_BARO_PROBE_LIST PROBE_BARO_I2C(MS56XX, 1, 0x77)
+    #define HAL_INS_PROBE_LIST PROBE_IMU_I2C(Invensense, 1, 0x68, ROTATION_NONE)
+    #define HAL_MAG_PROBE_LIST PROBE_MAG_IMU(AK8963, mpu9250, 0, ROTATION_NONE)
+    #define HAL_PROBE_EXTERNAL_I2C_COMPASSES
+    #define HAL_GPIO_A_LED_PIN        24
+    #define HAL_GPIO_B_LED_PIN        25
+    #define HAL_GPIO_C_LED_PIN        16
+    #define HAL_GPIO_LED_ON           0
+    #define HAL_GPIO_LED_OFF          1
 #else
     #error "no Linux board subtype set"
 #endif
